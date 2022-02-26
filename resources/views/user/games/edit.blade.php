@@ -10,7 +10,7 @@
                 <h2>List a New Items</h2>
             </div>
             <div class="p-3">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{route('user.game.update',$game->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Game Name:</label>
@@ -98,7 +98,7 @@
             var image_holder = $('.image-holder');
             var extension = image_path.substring(image_path.lastIndexOf('.') + 1).toLowerCase();
 
-            if (extension == 'jpeg' || extension == 'jpg' || extension == 'png') {
+            if (extension == 'jpeg' || extension == 'jpg' || extension == 'png' || extension =='jfif') {
                 if (typeof(FileReader) != 'undefined') {
                     image_holder.empty();
                     var reader = new FileReader();

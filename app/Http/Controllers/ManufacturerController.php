@@ -98,7 +98,6 @@ class ManufacturerController extends Controller
         $manufacturer = $this->manufacturer::find($id);
         // dd($manufacturer);
 
-
         $manufacturer->manufacturer_name = $request->manufacturer_name;
         $manufacturer->manufacturer_description = $request->manufacturer_description;
 

@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/create', [GameController::class, 'create'])->name('create');
             Route::post('/store', [GameController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [GameController::class, 'edit'])->name('edit');
-
+            Route::post('/update{id}', [GameController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [GameController::class, 'destroy'])->name('delete');
 
 

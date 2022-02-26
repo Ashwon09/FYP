@@ -114,6 +114,35 @@ class GameController extends Controller
     public function update(GameRequest $request, $id)
     {
         $game = $this->game::find($id);
+
+        $genre = implode(',', $request->genre_id);
+        // dd($genre);
+        $newImageName = null;
+
+
+        if ($request->game_image != null) {
+            $destination = public_path('/uploads/manufacturer/' . $game->game_image);
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('game_image');
+            $newImageName = time() . '_' . $file->getClientOriginalName();
+            $dest = public_path('/uploads/game');
+            $request->file('game_image')->move($dest, $newImageName);
+            $game->game_image = $newImageName;
+        }
+
+        $game->game_image = $game->game_image;
+        $game->game_name = $request->game_name;
+        $game->game_developer = $request->game_developer;
+        $game->game_description = $request->game_description;
+        $game->game_price = $request->game_price;
+        $game->game_comment = $request->game_comment;
+        $game->genre_id = $genre;
+        $game->console_id = $request->console_id;
+        $game->user_id = Auth::user()->id;
+        $game->update();
+        return redirect()->route('user.game.index')->with('message', 'Game Successfully Updated');
         //
     }
 
