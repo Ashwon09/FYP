@@ -31,7 +31,7 @@
                     <td>{{$genre->genre_description}}</td>
 
                     <td>
-                        <a type="button" class="btn btn-danger" href="{{route('admin.genre.delete', $genre->id)}}">Delete <i class="far fa-trash-alt"></i></a>
+                        <!-- <a type="button" class="btn btn-danger" href="{{route('admin.genre.delete', $genre->id)}}">Delete <i class="far fa-trash-alt"></i></a> -->
                         <a type="button" class="btn btn-primary" href="{{route('admin.genre.edit', $genre->id)}}">Edit <i class="far fa-edit"></i></a>
                     </td>
                 </tr>

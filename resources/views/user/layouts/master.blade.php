@@ -95,7 +95,9 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="{{route('user.details')}}">Details</a>
         <a href="{{route('user.passwordChangeForm')}}">Change Password</a>
-        <a href="{{route('user.game.index')}}">View Listed Items</a>
+        <a href="{{route('user.game.index')}}">View All Listed Items</a>
+        <a href="{{route('user.game.indexsold')}}">View All Sold Items</a>
+        <a href="{{route('user.game.indexselling')}}">View All Selling Items</a>
     </div>
     <!-- sidebar Ends -->
     <!-- header Begins -->

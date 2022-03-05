@@ -11,7 +11,7 @@
                 <span aria-hidden="true" style="font-size:20px">x</span>
         </div>
         @endif
-        <h1 class="font-weight-bold">View Listed Games</h1>
+        <h1 class="font-weight-bold">Sold Games</h1>
     </div>
     <div class="text-right mr-3 mb-2">
         <a class="btn btn-primary" href="{{route('user.game.create')}}">List New Game<i class="fas fa-plus-circle ml-1"></i></a>
@@ -47,9 +47,6 @@
                         <a type="button" class="btn btn-success" data-toggle="modal" data-target="#status{{$game->id}}">Info <i class="fas fa-info"></i></a>
                         <a type="button" class="btn btn-primary" href="{{route('user.game.edit', $game->id)}}">Edit <i class="far fa-edit"></i></a>
                         <a type="button" class="btn btn-danger" href="{{route('user.game.delete',$game->id)}}">Delete <i class="far fa-trash-alt"></i></a>
-                        @if($game->game_status=='selling')
-                            <a type="button" class="btn btn-warning text-white" href="{{route('user.game.sold',$game->id)}}">Sold <i class="fas fa-dollar-sign"></i></a>
-                        @endif
                     </td>
                 </tr>
 

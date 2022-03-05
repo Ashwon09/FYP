@@ -33,7 +33,7 @@
                     <td class="text-center"> <img src="{{asset('uploads/manufacturer/'. $manufacturer->manufacturer_image)}}" alt="" width='100' height='100'> </td>
 
                     <td>
-                        <a type="button" class="btn btn-danger" href="{{route('admin.manufacturer.delete',$manufacturer->id)}}">Delete <i class="far fa-trash-alt"></i></a>
+                        <!-- <a type="button" class="btn btn-danger" href="{{route('admin.manufacturer.delete',$manufacturer->id)}}">Delete <i class="far fa-trash-alt"></i></a> -->
                         <a type="button" class="btn btn-primary" href="{{route('admin.manufacturer.edit',$manufacturer->id)}}">Edit <i class="far fa-edit"></i></a>
                     </td>
                 </tr>

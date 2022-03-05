@@ -26,12 +26,32 @@ class GameController extends Controller
 
     public function index()
     {
+        // dd('here');
         $games = $this->game::where('user_id', Auth::user()->id)->get();
         // dd($games);
         return view('user.games.index', compact('games'));
         //
     }
+    public function indexsold()
+    {
+        // dd('sold');
+        $games = $this->game::where('user_id', Auth::user()->id)->where('game_status','sold')->get();
+        // dd($games);
+        return view('user.games.indexsold', compact('games'));
+        //
+    }
 
+    
+    public function indexselling()
+    {
+        // dd('selling');
+        $games = $this->game::where('user_id', Auth::user()->id)->where('game_status','selling')->get();
+        // dd($games);
+        return view('user.games.index', compact('games'));
+        //
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +76,7 @@ class GameController extends Controller
     {
         // dd($request->all());
 
-        if ($this->checkGame($request->game_description)) {
+        // if ($this->checkGame($request->game_description)) {
             if (!is_dir('uploads'))
                 mkdir('uploads');
 
@@ -66,9 +86,9 @@ class GameController extends Controller
             $this->game::create($request->createItem());
 
             return redirect()->route('user.game.index')->with('message', 'Game Successfully Added');
-        } else {
-            return redirect()->route('user.game.create')->with('message', 'Enter Valid Game with Game Description');
-        }
+        // } else {
+        //     return redirect()->route('user.game.create')->with('message', 'Enter Valid Game with Game Description');
+        // }
 
 
         //
@@ -162,6 +182,13 @@ class GameController extends Controller
         $game->delete();
         return redirect()->back();
         //
+    }
+
+    public function sold($id){
+        $game = $this->game::find($id);
+        $game->game_status='sold';
+        $game->update();
+        return redirect()->route('user.game.index')->with('message', 'Game Successfully Updated');
     }
 
     public function checkGame($description)

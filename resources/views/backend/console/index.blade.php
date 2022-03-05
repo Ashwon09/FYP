@@ -33,7 +33,7 @@
                     <td>{{$console->console_description}}</td>
 
                     <td>
-                        <a type="button" class="btn btn-danger" href="{{route('admin.console.delete', $console->id)}}">Delete <i class="far fa-trash-alt"></i></a>
+                        <!-- <a type="button" class="btn btn-danger" href="{{route('admin.console.delete', $console->id)}}">Delete <i class="far fa-trash-alt"></i></a> -->
                         <a type="button" class="btn btn-primary" href="{{route('admin.console.edit', $console->id)}}">Edit <i class="far fa-edit"></i></a>
                     </td>
                 </tr>
