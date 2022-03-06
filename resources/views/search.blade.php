@@ -1,5 +1,5 @@
 @foreach ($games as $game)
-                <div class="col-md-3 mt-4">
+                <div class="col-md-4 mt-4">
                     <a class="link" href="{{route('selectedGame', $game->id)}}">
                         <div class="card border-primary cust-card ">
                             <div class="card-img-top text-center ">
@@ -15,6 +15,10 @@
                                     <tr>
                                         <td class="font-weight-bold">Price :</td>
                                         <td> NPR {{$game->game_price}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Listed By :</td>
+                                        <td>{{$game->user->name}} </td>
                                     </tr>
                                 </table>
 

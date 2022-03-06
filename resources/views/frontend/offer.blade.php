@@ -14,15 +14,23 @@
                     <span style="color:red"> @error ('email'){{$message}}@enderror</span>
                 </div>
                 <div class="form-group">
-                    <label for="Offer">Cash Offer of</label>
-                    <input type="number" class="form-control" id="offer" name="offer">
-                    <span style="color:red"> @error ('offer'){{$message}}@enderror</span>
+                    <label for="Offer">Select Offer</label>
+                    <select class="form-control" id="manufacturer_id" name="manufacturer_id">
+                        <option disabled selected>Select Offer</option>
+                        <option value="cash offer">Cash Offer</option>
+                        <option value="cash offer">Exchange Offer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" value="{{old('price')}}" name="price" >
+                    <span style="color:red"> @error ('email'){{$message}}@enderror</span>
                 </div>
                 <div class="form-group">
                     <label for="comment">Add Comment</label>
                     <textarea class="form-control" id="comment" name="comment" placeholder="Enter Comment" rows="4">{{old('comment')}}</textarea>
                 </div>
-                 <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
         </div>

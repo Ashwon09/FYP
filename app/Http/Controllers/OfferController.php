@@ -18,7 +18,7 @@ class OfferController extends Controller
     
     public function cashOfferForm($id){
         $game=$this->game::find($id);
-        return view('frontend.cashoffer',compact('game'));
+        return view('frontend.offer',compact('game'));
     }
 
     public function cashOffer(CashOfferRequest $request, $id){
@@ -38,18 +38,4 @@ class OfferController extends Controller
         
     }
 
-    public function exchangeOfferForm($id){
-        $game=$this->game::find($id);
-        return view('frontend.exchangeoffer',compact('game'));
-    }
-
-    public function exchangeOffer(Request $request, $id){
-
-    }
-
-
-    public function questionForm($id){
-        dd('question form', $id);
-        return view();
-    }
 }
