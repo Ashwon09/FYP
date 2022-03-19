@@ -2,6 +2,13 @@
 
 @section('body')
 <div class="container mb-5">
+    @if(session()->has('message'))
+    <div class="alert alert-danger fade in alert-dismiss show">
+        {{ session()->get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" style="font-size:20px">x</span>
+    </div>
+    @endif
     <div class="card mt-5  border-primary">
         <div class="card-header">
             <h1>Game Information</h1>
@@ -19,17 +26,80 @@
                     <h5>Listed By: {{$game->user->name}}</h5>
                     <h5>Comment: {{$game->game_comment}}</h5>
                     <div class="mt-5">
-                        <a class="btn btn-primary mr-1" href="{{route('offer.cashForm', $game->id)}}">Send Cash Offer <i class="far fa-money-bill-alt"></i></a>
+                        <a class="btn btn-primary mr-1" href="{{route('offer.cashForm', $game->id)}}">Send Offer <i class="far fa-money-bill-alt"></i></a>
                     </div>
                 </div>
                 <div class="col-6 p-5">
-                    <img src="{{asset('uploads/game/'. $game->game_image)}}" class="ml-5" height="255" alt="Game Image">
+                    <div class="text-center">
+                        <img src="{{asset('uploads/game/'. $game->game_image)}}" class="ml-5" height="255" alt="Game Image">
+                    </div>
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+
+                            @if(Auth::check())
+                            <hr class="my-4">
+                            <a type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#status">Report Game <i class="far fa-flag"></i></a>
+
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+<div class="modal fade mt-5" id="status" tabindex="-1" aria-labelledby="status" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Report Game</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="ml-4">
+                <form action="{{route('user.report', $game->id)}}" method="post">
+                    @csrf
+                    <div class="form-group ">
+                        <label for="game_name" class="col-sm-2 col-form-label">Game</label>
+                        <div class="col-sm-11">
+                            <input type="Text" class="form-control" id="game_name" placeholder="game name" value="{{$game->game_name}}" name="game_name" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="user" class="col-sm-3 col-form-label">Added By</label>
+                        <div class="col-sm-11">
+                            <input type="Text" class="form-control" id="game_user" placeholder="game user" value="{{$game->user->name}}" name="game_user" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="report" class="col-sm-2 col-form-label">Reason</label>
+                        <div class="col-sm-11">
+                            <select class="form-control " id="Report_reason" name="report_reason">
+                                <option value="Inappropriate Content">Inappropriate Content</option>
+                                <option value="Fake or Spam">Fake or Spam</option>
+                                <option value="Duplicate Content">Duplicate Content</option>
+                                <option value="No longer Available">No longer Available</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-11 col-form-label">Comment (Describe why you want to report the game)</label>
+                        <div class="col-sm-11">
+                            <textarea class="form-control" id="report_comment" name="report_comment" placeholder="Enter the reason you reported the game" rows="4">{{old('report_comment')}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger mb-5 ml-3">Report</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection
 

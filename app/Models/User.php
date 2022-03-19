@@ -47,4 +47,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Game::class);
     }
 
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
+    
+    public function report_to(){
+        return $this->hasMany(Report::class);
+    }
 }

@@ -9,7 +9,9 @@ use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use Facade\FlareClient\Report;
 use GuzzleHttp\Middleware;
 
 /*
@@ -69,6 +71,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::put('/update', [UserController::class, 'updateDetails'])->name('update');
         Route::get('/password-change', [UserController::class, 'passwordChangeForm'])->name('passwordChangeForm');
         Route::put('/changePassword', [UserController::class, 'changePassword'])->name('changePassword');
+        Route::post('/Report{id}', [ReportController::class, 'store'])->name('report');
+        
 
         Route::group(['as' => 'game.', 'prefix' => 'game'], function () {
             Route::get('/index', [GameController::class, 'index'])->name('index');
@@ -87,6 +91,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/home', [AdminController::class, 'index'])->name('index');
+        Route::get('/viewReports', [ReportController::class, 'index'])->name('reportIndex');
+
 
         Route::group(['as' => 'manufacturer.', 'prefix' => 'manufacturer'], function () {
             Route::get('/index', [ManufacturerController::class, 'index'])->name('index');

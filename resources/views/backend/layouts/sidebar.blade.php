@@ -32,6 +32,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('admin.reportIndex')}}" class="nav-link">
+                    icon
+                    <p>
+                        Reports
+                    </p>
+                </a>
+            </li>
           
           
 

@@ -33,4 +33,10 @@ class Game extends Model
     public function genre(){
         return $this->belongsTo(Genre::class);
     }
+
+    public function report(){
+        return $this->hasMany(Report::class);
+    }
+
+
 }
