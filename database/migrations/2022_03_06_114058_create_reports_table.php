@@ -15,20 +15,15 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('report_by')->unsigned()->index()->nullable();
-            $table->foreign('report_by')
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
                 
-            $table->bigInteger('report_to')->unsigned()->index()->nullable();
-            $table->foreign('report_to')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-
-            $table->bigInteger('report_game')->unsigned()->index()->nullable();
-            $table->foreign('report_game')
+        
+            $table->bigInteger('game_id')->unsigned()->index()->nullable();
+            $table->foreign('game_id')
                 ->references('id')
                 ->on('games')
                 ->onDelete('cascade');

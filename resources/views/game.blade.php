@@ -16,7 +16,14 @@
         <div class="card-body">
             <div class="row mt-3">
                 <div class="col-6">
-                    <h1>{{$game->game_name}}</h1>
+                    <h1>{{$game->game_name}} 
+                    @if(Auth::check())
+                    @if(auth()->user()->role=='admin')
+                        <a class="btn btn-danger mr-1 mb-2 btn-sm" href="{{route('admin.delete',$game->id)}}">Delete Game <i class="far fa-trash-alt"></i></a>
+                        @endif
+                        @endif
+                    </h1>
+
                     <hr class="my-2">
                     <h5>Game Developer: {{$game->game_developer}}</h5>
                     <h5>Game Description: {{$game->game_description}}</h5>
@@ -30,7 +37,9 @@
                     </div>
                 </div>
                 <div class="col-6 p-5">
+
                     <div class="text-center">
+
                         <img src="{{asset('uploads/game/'. $game->game_image)}}" class="ml-5" height="255" alt="Game Image">
                     </div>
                     <div class="row">

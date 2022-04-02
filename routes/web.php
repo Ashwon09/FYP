@@ -92,6 +92,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/home', [AdminController::class, 'index'])->name('index');
         Route::get('/viewReports', [ReportController::class, 'index'])->name('reportIndex');
+        Route::get('/delete/{id}', [AdminController::class, 'destroy'])->name('delete');
+
 
 
         Route::group(['as' => 'manufacturer.', 'prefix' => 'manufacturer'], function () {

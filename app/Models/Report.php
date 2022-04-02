@@ -9,22 +9,18 @@ class report extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'report_by',
-        'report_to',
-        'report_game',
+        'user_id',
+        'game_id',
         'report_reason',
         'report_comment'
     ];
 
-    public function report_by(){
+  
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function report_to(){
-        return $this->belongsTo(User::class);
-    }
-
-    public function report_game(){
+    public function game(){
         return $this->belongsTo(Game::class);
     }
 }

@@ -30,16 +30,14 @@
                 @foreach($reports as $report)
                 <tr>
                     <td> {{$i++ }}</td>
-                    <td>{{$report->report_by}}</td>
-                    <td>{{$report->report_to}}</td>
-                    <td>{{$report->report_game}}</td>
+                    <td>{{$report->user->name}}</td>
+                    <td>{{$report->game->user->name}}</td>
+                    <td>{{$report->game->game_name}}</td>
                     <td>{{$report->report_reason}}</td>
                     <td>{{$report->report_comment}}</td>
-
-
                     <td>
-                        <a type="button" class="btn btn-danger" href="">Delete Game <i class="far fa-trash-alt"></i></a>
-                        <a type="button" class="btn btn-primary" href="">View Game <i class="far fa-edit"></i></a>
+                        <a type="button" class="btn btn-danger" href="">Delete Report <i class="far fa-trash-alt"></i></a>
+                        <a type="button" class="btn btn-primary" href="{{route('selectedGame', $report->game->id)}}">View Game <i class="far fa-edit"></i></a>
                     </td>
                 </tr>
 

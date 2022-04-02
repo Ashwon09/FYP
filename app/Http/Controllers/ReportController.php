@@ -41,10 +41,10 @@ class ReportController extends Controller
      */
     public function store(Request $request, $id)
     {
+        // dd($request->all());
         $game = game::find($id);
-        $report_game=$game->id;
-        $report_by=Auth::user()->id;
-        $report_to=$game->user->id;
+        $game_id=$game->id;
+        $user_id=Auth::user()->id;
         $report_reason=$request->report_reason;
         $report_comment="abcd";
         if ($request->report_reason == null){
@@ -55,9 +55,8 @@ class ReportController extends Controller
         }
         $report_comment=$request->report_comment;
          report::create([
-             'report_by'=> $report_by,
-             'report_to' => $report_to,
-             'report_game' => $report_game,
+             'user_id'=> $user_id,
+             'game_id' => $game_id,
              'report_reason' => $report_reason,
              'report_comment' => $report_comment,
          ]);
