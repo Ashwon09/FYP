@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\deleteGame;
 use App\Models\Game;
 use App\Models\Manufacturer;
 use App\Models\Console;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -34,6 +36,12 @@ class AdminController extends Controller
         if (File::exists($destination)) {
             File::delete($destination);
         }
+
+        $data=[
+            'game'=>$game->game_name,       
+        ];
+        // dd($game->user->email);
+        Mail::to($game->user->email)->send(new deleteGame($data));
         $game->delete();
         return redirect()->route('admin.reportIndex');
         //
