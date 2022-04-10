@@ -15,6 +15,21 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->bigInteger('game_id')->unsigned()->index()->nullable();
+            $table->foreign('game_id')
+                ->references('id')
+                ->on('games')
+                ->onDelete('cascade');
+            $table->string('offer_type');
+            $table->string('offer');
+            $table->string('offer_to');
+            $table->string('comment')->nullable();
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

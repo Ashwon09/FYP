@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CashOfferRequest extends FormRequest
+class OfferRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class CashOfferRequest extends FormRequest
     public function rules()
     {
         return [
+            'game'=>'required',
+            'offer_type'=>'required',
             'offer'=>'required',
-            'email'=>'required|email',
+
             //
         ];
     }

@@ -1,16 +1,16 @@
 @component('mail::message')
 # Offer Received
 
-{{$data['offer_from']}} made an offer for {{$data['game']}} game of {{$data['console']}} console
+{{$data['user']}} made an offer for {{$data['game']}} game
 
 @component('mail::table')
 |  |  |
 | ------------- |:-------------:|
-| Offer from | {{$data['offer_from']}} |
-| Offer for | {{$data['game']}} of {{$data['console']}} |
-| Cash Offer | Rs {{$data['offer']}} |
-| Phone Number of {{$data['offer_from']}} | {{$data['phone']}} |
-| Comment |{{$data['comment']}} |
+| Offer from | {{$data['user']}} |
+| Offer for | {{$data['game']}}|
+| Offer Type | {{$data['offer_type']}} |
+| Offer of | {{$data['offer']}} |
+| Number of offerer | {{$data['phone']}} |
 
 @endcomponent
 

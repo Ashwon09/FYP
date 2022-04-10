@@ -54,15 +54,15 @@ Route::get('/getview', [HomeController::class, 'returnView'])->name('returnView'
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['as'=>'offer.', 'prefix'=>'offer'], function(){
-        Route::get('cash-offer-form/{id}',[OfferController::class,'cashOfferForm'])->name('cashForm');
-        Route::get('cash-offer-/{id}',[OfferController::class,'cashOffer'])->name('cash');
+        Route::get('offer-form/{id}',[OfferController::class,'cashOfferForm'])->name('Form');
+        Route::get('offer-/{id}',[OfferController::class,'Offer'])->name('offer');
+
+        Route::get('offer-received',[OfferController::class,'offerReceived'])->name('offerReceived');
+        Route::get('offer-sent',[OfferController::class,'offerSent'])->name('offerSent');
 
 
-        Route::get('Exchange-offer-form/{id}',[OfferController::class,'exchangeOfferForm'])->name('exchangeForm');
-        Route::get('exchange-offer-/{id}',[OfferController::class,'exchangeOffer'])->name('exchange');
 
 
-        Route::get('question-form/{id}',[OfferController::class,'questionForm'])->name('questionForm');
     });
 
     Route::group(['as' => 'user.', 'prefix' => 'user'], function () {

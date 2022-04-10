@@ -98,6 +98,8 @@
         <a href="{{route('user.game.index')}}">View All Listed Items</a>
         <a href="{{route('user.game.indexsold')}}">View All Sold Items</a>
         <a href="{{route('user.game.indexselling')}}">View All Selling Items</a>
+        <a href="{{route('offer.offerReceived')}}">View Offers Received</a>
+        <a href="{{route('offer.offerSent')}}">View Offer Sent</a>
     </div>
     <!-- sidebar Ends -->
     <!-- header Begins -->

@@ -29,8 +29,7 @@ class CashOffer extends Mailable
     public function build()
     {
         return $this->markdown('emails/cashOffer')
-            ->subject('Cash Offer for ' . $this->data['game'])
-            ->from($this->data['email'])
+            ->subject('Offer for ' . $this->data['game'])
             ->with('data', $this->data);
     }
 }

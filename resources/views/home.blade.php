@@ -16,7 +16,7 @@
         <div class="col-3">
             @include('filter')
         </div>
-        <div class="col-9">
+        <div class="col-9 border border-primary rounded">
             <div class="text-center">
                 <h2>Games Listed</h2>
 

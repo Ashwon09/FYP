@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Ecommerce| Dashboard</title>
+    <title>Game Change Nepal</title>
     <!-- Styles -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
@@ -40,7 +40,7 @@
         <a href="{{route('home')}}">
             <img src="{{asset('assets/logo.jpg')}}" alt="" width='40' height='40'>
         </a>
-        <a class="navbar-brand ml-3" href="{{route('home')}}">Home</a>
+        <a class="navbar-brand ml-3" href="{{route('home')}}">Game Change Nepal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,9 +50,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
-                </li>
+                </li> -->
             </ul>
 
             <div class="form-inline my-2  my-lg-0">
