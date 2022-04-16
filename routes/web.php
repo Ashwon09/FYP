@@ -40,6 +40,9 @@ Route::get('/sort-by-price2',[HomeController::class,'sortByPricedesc'])->name('s
 Route::get('/sort-by-created1',[HomeController::class,'sortBycreatedasc'])->name('sortByCreatedasc');
 Route::get('/sort-by-created2',[HomeController::class,'sortBycreateddesc'])->name('sortByCreateddesc');
 
+Route::get('/banned',[HomeController::class,'bannedView'])->name('bannedView');
+
+
 
 
 
@@ -53,6 +56,8 @@ Route::get('/getview', [HomeController::class, 'returnView'])->name('returnView'
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
+    Route::group(['middleware' => ['customer']], function () {
+
     Route::group(['as'=>'offer.', 'prefix'=>'offer'], function(){
         Route::get('offer-form/{id}',[OfferController::class,'cashOfferForm'])->name('Form');
         Route::get('offer-/{id}',[OfferController::class,'Offer'])->name('offer');
@@ -60,8 +65,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('offer-received',[OfferController::class,'offerReceived'])->name('offerReceived');
         Route::get('offer-sent',[OfferController::class,'offerSent'])->name('offerSent');
 
+        Route::get('offer-sent-accepted',[OfferController::class,'offerSentAccept'])->name('offerSentAccept');
+        Route::get('offer-sent-rejected',[OfferController::class,'offerSentReject'])->name('offerSentReject');
+        Route::get('offer-sent-pending',[OfferController::class,'offerSentPending'])->name('offerSentPending');
 
 
+        Route::get('offer-accept/{id}',[OfferController::class,'acceptOffer'])->name('accept');
+        Route::get('offer-reject/{id}',[OfferController::class,'rejectOffer'])->name('reject');
 
     });
 
@@ -85,14 +95,25 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/delete/{id}', [GameController::class, 'destroy'])->name('delete');
             Route::get('/sold{id}', [GameController::class, 'sold'])->name('sold');
 
-
+        });
         });
     });
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/home', [AdminController::class, 'index'])->name('index');
         Route::get('/viewReports', [ReportController::class, 'index'])->name('reportIndex');
+        Route::get('/viewReports-user', [ReportController::class, 'index_user'])->name('user_report');
+
+
+        Route::get('/deleteReports/{id}', [ReportController::class, 'destroy'])->name('report_delete');
         Route::get('/delete/{id}', [AdminController::class, 'destroy'])->name('delete');
+
+        Route::get('/view-ban-users', [AdminController::class, 'viewBannedUsers'])->name('viewBanUsers');
+
+        Route::get('/ban-user/{id}', [AdminController::class, 'banUser'])->name('banUser');
+        Route::get('/unban-user/{id}', [AdminController::class, 'unBanUser'])->name('unBanUser');
+
+
 
 
 

@@ -13,11 +13,10 @@
             <thead class="thead-dark">
                 <tr>
                     <th>S.N.</th>
-                    <th>Report By</th>
-                    <th>Report To</th>
-                    <th>Report Game</th>
-                    <th>Report Reason</th>
-                    <th>Report Comment</th>
+                    <th>User Id</th>
+                    <th>User Name</th>
+                    <th>Contact Number</th>
+                    <th>Report Times</th>
                     <th>Action</th>
 
 
@@ -30,14 +29,18 @@
                 @foreach($reports as $report)
                 <tr>
                     <td> {{$i++ }}</td>
+                    <td>{{$report->user->id}}</td>
                     <td>{{$report->user->name}}</td>
-                    <td>{{$report->game->user->name}}</td>
-                    <td>{{$report->game->game_name}}</td>
-                    <td>{{$report->report_reason}}</td>
-                    <td>{{$report->report_comment}}</td>
+                    <td>{{$report->user->phone_number}}</td>
+                    <td>{{$report->report_times}}</td>
                     <td>
-                        <a type="button" class="btn btn-danger" href="{{route('admin.report_delete', $report->id)}}">Delete Report <i class="far fa-trash-alt"></i></a>
-                        <a type="button" class="btn btn-primary" href="{{route('selectedGame', $report->game->id)}}">View Game <i class="far fa-edit"></i></a>
+                        @if($report->user->role!='banned')
+                        <a type="button" class="btn btn-primary" href="{{route('admin.banUser',$report->user->id)}}">Ban User</a>
+                        @else
+                        <p class="text-danger"> 
+                        User is banned
+                        <p>
+                        @endif
                     </td>
                 </tr>
 

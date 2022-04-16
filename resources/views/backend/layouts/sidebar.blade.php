@@ -36,7 +36,23 @@
                 <a href="{{route('admin.reportIndex')}}" class="nav-link">
                     icon
                     <p>
-                        Reports
+                       Game Reports
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.user_report')}}" class="nav-link">
+                    icon
+                    <p>
+                       User Reports
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.viewBanUsers')}}" class="nav-link">
+                    icon
+                    <p>
+                       Banned Users
                     </p>
                 </a>
             </li>

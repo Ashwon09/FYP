@@ -56,9 +56,43 @@ class OfferController extends Controller
     }
 
     public function offerSent(){
+        $offers= Offer::orderBy('created_at', 'asc')->where('user_id',Auth::user()->id)->get();
+        // dd($offers);
+        return view('user.offersent', compact('offers'));
+    }
+
+    public function acceptOffer($id){
+        $offer= Offer::find($id);
+        $offer->status='accepted';
+        $offer->update();
+        return redirect()->route('offer.offerReceived')->with('message', 'Offer Accepted');
+    }
+
+    
+    public function rejectOffer($id){
+        $offer= Offer::find($id);
+        $offer->status='rejected';
+        $offer->update();
+        return redirect()->route('offer.offerReceived')->with('messagenot', 'Offer Rejected');
+    }
+
+    public function offerSentAccept(){
+        $offers= Offer::orderBy('created_at', 'asc')->where('user_id',Auth::user()->id)->where('status','accepted')->get();
+        // dd($offers);
+        return view('user.offersent', compact('offers'));
+    }
+
+    public function offerSentPending(){
         $offers= Offer::orderBy('created_at', 'asc')->where('user_id',Auth::user()->id)->where('status','pending')->get();
         // dd($offers);
         return view('user.offersent', compact('offers'));
     }
+
+    public function offerSentReject(){
+        $offers= Offer::orderBy('created_at', 'asc')->where('user_id',Auth::user()->id)->where('status','rejected')->get();
+        // dd($offers);
+        return view('user.offersent', compact('offers'));
+    }
+
 
 }

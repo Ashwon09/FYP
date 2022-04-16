@@ -14,6 +14,17 @@
         @endif
         <h1 class="font-weight-bold">Offer Sent</h1>
     </div>
+    <div class="dropdown show text-right mb-5">
+        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            List Offers
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="{{route('offer.offerSentAccept')}}">Accepted</a>
+            <a class="dropdown-item" href="{{route('offer.offerSentReject')}}">Rejected</a>
+            <a class="dropdown-item" href="{{route('offer.offerSentPending')}}">Pending</a>
+        </div>
+    </div>
     <div class="table-responsive-md">
         <table class="table table-bordered" id="items">
             <thead class="thead-dark">
@@ -24,7 +35,8 @@
                     <th>Offer Type</th>
                     <th>Offer</th>
                     <th>Game Image</th>
-                    <th>Action</th>
+                    <th>Contact Number</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,9 +51,16 @@
                     <td>{{$offer->offer_type}}</td>
                     <td>{{$offer->offer}}</td>
                     <td><img src="{{asset('uploads/game/'. $offer->game->game_image)}}" alt="" width='100' height='100'></td>
+                    @if($offer->status=='accepted')
                     <td>
-                        <a type="button" class="btn btn-danger" href="">Delete <i class="fas fa-trash-alt"></i></a>
+                        {{$offer->game->user->phone_number}}
                     </td>
+                    @else
+                    <td>
+        
+                    </td>
+                    @endif
+                    <td>{{$offer->status}}</td>
                 </tr>
                 @endforeach
 

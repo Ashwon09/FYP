@@ -49,6 +49,9 @@ class HomeController extends Controller
             } elseif (Auth::User()->role == 'admin') {
                 return redirect()->route('admin.index');
             }
+            elseif (Auth::User()->role == 'banned') {
+                return redirect()->route('bannedView');
+            }
         } else {
             return redirect()->route('home');
         }
@@ -138,5 +141,9 @@ class HomeController extends Controller
         $genres = $this->genre::get();
         $consoles = $this->console::get();
         return view('home', compact('games', 'genres', 'consoles'));
+    }
+
+    public function bannedView(){
+        return view('banned');
     }
 }

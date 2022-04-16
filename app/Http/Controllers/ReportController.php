@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\report;
 use App\Models\Game;
+use App\Models\user_report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,14 @@ class ReportController extends Controller
         $reports= Report::orderBy('created_at', 'desc')->get();
 
         return view('backend.Reports.report', compact('reports'));
+        //
+    }
+
+    public function index_user()
+    {
+        $reports= user_report::orderBy('created_at', 'desc')->get();
+
+        return view('backend.Reports.user_reports', compact('reports'));
         //
     }
 
@@ -107,6 +116,9 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
+        $report=report::find($id);
+        $report->delete();
+        return redirect()->back();
         //
     }
 }
