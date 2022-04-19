@@ -75,5 +75,29 @@ class UserController extends Controller
           }
     }
     
+    public function deleteView(){
+    $user=User::find(Auth::user()->id);
+    return view('user.deleteUser', compact('user'));
+    }
+
+    public function deleteUser(Request $request)
+    {
+          // dd($request->all());
+          $user = user::find(Auth::user()->id);
+        // dd($request->name);
+
+        if($request->name == $user->name){
+            $user->delete();
+            Auth::logout();
+            return redirect()->route('home')->with('message','User Deleted');
+        }
+        else{
+            // dd('false');
+            return redirect()->back()->with('message','Invalid Input');
+
+        }
+  
+        
+    }
 
 }

@@ -1,6 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('body')
+@if(session()->has('message'))
+<div class="alert alert-danger fade in alert-dismiss show">
+    {{ session()->get('message') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" style="font-size:20px">x</span>
+</div>
+@endif
 <div class="container-fluid mb-5">
     <div class="jumbotron">
         <h1 class="display-4">Hello, Welcome to Game Change Nepal!</h1>

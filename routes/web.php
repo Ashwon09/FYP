@@ -82,6 +82,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/password-change', [UserController::class, 'passwordChangeForm'])->name('passwordChangeForm');
         Route::put('/changePassword', [UserController::class, 'changePassword'])->name('changePassword');
         Route::post('/Report{id}', [ReportController::class, 'store'])->name('report');
+
+        Route::get('/delete-user', [UserController::class, 'deleteView'])->name('deleteView');
+        Route::put('/delete-user-confirm', [UserController::class, 'deleteUser'])->name('deleteUser');
+
+
         
 
         Route::group(['as' => 'game.', 'prefix' => 'game'], function () {
