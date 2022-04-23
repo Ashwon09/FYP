@@ -7,7 +7,7 @@
     <div class="col-6">
         <div class="card mt-4">
             <div class="card-header text-center text-white bg-dark mb-3 ">
-                <h2>User Details</h2>
+                <h2>Delete Users</h2>
             </div>
             <p class="text-center">If you want to delete the User fill the user name({{$user->name}}) in the text box below:</p>
             @if(session()->has('message'))

@@ -4,7 +4,7 @@
 @section('body')
 <div class="container-fluid">
     <div class="text-center">
-        <h1 class="font-weight-bold">View Reports</h1>
+        <h1 class="font-weight-bold">View Banned Users</h1>
     </div>
     <div class="text-right mr-3 mb-2">
     </div>

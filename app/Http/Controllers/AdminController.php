@@ -24,10 +24,10 @@ class AdminController extends Controller
 
     public function index()
     {
-        $manufacturers= $this->manufacturer::get();
-        $consoles= $this->console::get();
+        $soldgames= $this->game::where('game_status','sold')->get();
+        $users= User::get();
         $games= $this->game::get();
-        return view('backend.index', compact('manufacturers','consoles','games'));
+        return view('backend.index', compact('soldgames','users','games'));
     }
 
     public function destroy($id)

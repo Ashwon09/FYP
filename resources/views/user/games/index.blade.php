@@ -11,6 +11,20 @@
                 <span aria-hidden="true" style="font-size:20px">x</span>
         </div>
         @endif
+        @if(session()->has('messageall'))
+        <div class="alert alert-danger fade in alert-dismiss show">
+            {{ session()->get('messageall') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="font-size:20px">x</span>
+        </div>
+        @endif
+        @if(session()->has('messagesold'))
+        <div class="alert alert-warning fade in alert-dismiss show">
+            {{ session()->get('messagesold') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="font-size:20px">x</span>
+        </div>
+        @endif
         <h1 class="font-weight-bold">View Listed Games</h1>
     </div>
     <div class="text-right mr-3 mb-2">

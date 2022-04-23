@@ -38,7 +38,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-color ">
         <a href="{{route('home')}}">
-            <img src="{{asset('assets/logo.jpg')}}" alt="" width='40' height='40'>
+            <img src="{{asset('assets/logo.jpg')}}" alt="" width='70' height='45'>
         </a>
         <a class="navbar-brand ml-3" href="{{route('home')}}">Game Change Nepal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,13 +61,13 @@
                     @guest
                     @if (Route::has('login'))
                     <li class="nav-item text-white">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @endif
 
                     @if (Route::has('register'))
                     <li class="nav-item text-white">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @endif
                     @else

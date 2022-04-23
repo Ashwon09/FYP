@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $games = $this->game::orderBy('created_at', 'desc')->paginate(4);
+        $games = $this->game::orderBy('created_at', 'desc')->where('game_status','selling')->paginate(9);
         // dd($games);
         $genres = $this->genre::get();
         $consoles = $this->console::get();
@@ -65,7 +65,7 @@ class HomeController extends Controller
         $consoles = $this->console::get();
         $search = $request->search;
         // dd($search);
-        $count = count($this->game::orderBy('created_at', 'desc')->where('game_name', 'LIKE', '%' . $search . '%')->get());
+        $count = count($this->game::orderBy('created_at', 'desc')->where('game_status','selling')->where('game_name', 'LIKE', '%' . $search . '%')->get());
         $games = $this->game::orderBy('created_at', 'desc')->where('game_name', 'LIKE', '%' . $search . '%')->paginate(3);
         return view('home', compact('games', 'count', 'genres', 'consoles', 'search'));
     }
@@ -77,7 +77,7 @@ class HomeController extends Controller
         $sort = explode(' ', $request->sortBy);
         $genres = $this->genre::get();
         $consoles = $this->console::get();
-        $games = $this->game::orderBy($sort[0] , $sort[1])
+        $games = $this->game::orderBy($sort[0] , $sort[1])->where('game_status','selling')
         ->where(function ($query) use ($request) {
             if (!empty($request->console_id)) {
                 $query->where('console_id',  $request->console_id);
@@ -97,7 +97,7 @@ class HomeController extends Controller
             }
             return $query;
         })
-            ->paginate(2);
+            ->paginate(6);
         $count = -1;
         // dd($data);
         return view('home', compact('genres', 'consoles', 'games', 'count'));
@@ -114,14 +114,14 @@ class HomeController extends Controller
     //to sorting
     public function sortByPriceasc()
     {
-        $games = $this->game::orderBy('game_price', 'asc')->paginate(4);
+        $games = $this->game::orderBy('game_price', 'asc')->where('game_status','selling')->paginate(6);
         $genres = $this->genre::get();
         $consoles = $this->console::get();
         return view('home', compact('games', 'genres', 'consoles'));
     }
     public function sortByPricedesc()
     {
-        $games = $this->game::orderBy('game_price', 'desc')->paginate(4);
+        $games = $this->game::orderBy('game_price', 'desc')->where('game_status','selling')->paginate(6);
         $genres = $this->genre::get();
         $consoles = $this->console::get();
         return view('home', compact('games', 'genres', 'consoles'));
@@ -129,7 +129,7 @@ class HomeController extends Controller
 
     public function sortByCreatedasc()
     {
-        $games = $this->game::orderBy('created_at', 'asc')->paginate(4);
+        $games = $this->game::orderBy('created_at', 'asc')->where('game_status','selling')->paginate(6);
         $genres = $this->genre::get();
         $consoles = $this->console::get();
         return view('home', compact('games', 'genres', 'consoles'));
@@ -137,7 +137,7 @@ class HomeController extends Controller
 
     public function sortByCreateddesc()
     {
-        $games = $this->game::orderBy('created_at', 'desc')->paginate(4);
+        $games = $this->game::orderBy('created_at', 'desc')->where('game_status','selling')->paginate(6);
         $genres = $this->genre::get();
         $consoles = $this->console::get();
         return view('home', compact('games', 'genres', 'consoles'));

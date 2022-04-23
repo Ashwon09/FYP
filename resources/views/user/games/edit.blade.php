@@ -7,7 +7,7 @@
     <div class="col-10">
         <div class="card border-secondary mt-4">
             <div class="card-header text-center text-white bg-dark mb-3 ">
-                <h2>List a New Items</h2>
+                <h2>Edit Listed Game</h2>
             </div>
             <div class="p-3">
                 <form action="{{route('user.game.update',$game->id)}}" method="post" enctype="multipart/form-data">

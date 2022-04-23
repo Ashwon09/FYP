@@ -46,5 +46,34 @@
 @push('scripts')
 
 
+<script>
+    $(function() {
+        $('#image_input').on('change', function() {
+            let image_path = $(this)[0].value;
+            var image_holder = $('.image-holder');
+            var extension = image_path.substring(image_path.lastIndexOf('.') + 1).toLowerCase();
 
+            if (extension == 'jpeg' || extension == 'jpg' || extension == 'png') {
+                if (typeof(FileReader) != 'undefined') {
+                    image_holder.empty();
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('<img/>', {
+                            'src': e.target.result,
+                            'class': 'img-fluid',
+                            'style': 'max-width:100px;margin-bottom:10px;'
+                        }).appendTo(image_holder);
+                    }
+                    image_holder.show();
+                    reader.readAsDataURL($(this)[0].files[0]);
+                } else {
+                    $(image_holder).html('This browser does not support fileReader');
+                }
+
+            } else {
+                $(image_holder).empty();
+            }
+        });
+    });
+</script>
 @endpush

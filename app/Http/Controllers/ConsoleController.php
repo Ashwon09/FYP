@@ -89,7 +89,7 @@ class ConsoleController extends Controller
     public function update(ConsoleRequest $request, $id)
     {
         $console=$this->console::find($id);
-        $console->update($request->createCategory());
+        $console->update($request->createConsole());
         return redirect()->route('admin.console.index');
         //
     }

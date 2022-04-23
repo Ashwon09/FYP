@@ -134,12 +134,9 @@ class GameController extends Controller
     public function update(GameRequest $request, $id)
     {
         $game = $this->game::find($id);
-
         $genre = implode(',', $request->genre_id);
         // dd($genre);
         $newImageName = null;
-
-
         if ($request->game_image != null) {
             $destination = public_path('/uploads/manufacturer/' . $game->game_image);
             if (File::exists($destination)) {
@@ -151,7 +148,6 @@ class GameController extends Controller
             $request->file('game_image')->move($dest, $newImageName);
             $game->game_image = $newImageName;
         }
-
         $game->game_image = $game->game_image;
         $game->game_name = $request->game_name;
         $game->game_developer = $request->game_developer;
@@ -180,7 +176,7 @@ class GameController extends Controller
             File::delete($destination);
         }
         $game->delete();
-        return redirect()->back();
+        return redirect()->back()->with('messageall', 'Game is Deleted');
         //
     }
 
@@ -188,7 +184,7 @@ class GameController extends Controller
         $game = $this->game::find($id);
         $game->game_status='sold';
         $game->update();
-        return redirect()->route('user.game.index')->with('message', 'Game Successfully Updated');
+        return redirect()->route('user.game.index')->with('messagesold', 'Game marked as sold');
     }
 
     public function checkGame($description)

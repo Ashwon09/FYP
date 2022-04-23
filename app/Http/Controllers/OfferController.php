@@ -45,7 +45,7 @@ class OfferController extends Controller
             'comment' => $request->comment,
             'offer_to'=>$game->user->id,
         ]);
-        return view('game')->with('message_sent', 'Offer Sent')->with('game',$game);
+        return redirect()->route('selectedGame', $game->id)->with('message_sent', 'Offer Sent');
         
     }
 

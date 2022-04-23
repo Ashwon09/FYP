@@ -40,7 +40,11 @@
                     <h5>Listed By: {{$game->user->name}}</h5>
                     <h5>Comment: {{$game->game_comment}}</h5>
                     <div class="mt-5">
+                    @if(Auth::check())
+                    @if(auth()->user()->role!='admin')
                         <a class="btn btn-primary mr-1" href="{{route('offer.Form', $game->id)}}">Send Offer <i class="far fa-money-bill-alt"></i></a>
+                    @endif
+                    @endif
                     </div>
                 </div>
                 <div class="col-6 p-5">
@@ -55,8 +59,11 @@
 
                             @if(Auth::check())
                             <hr class="my-4">
+                            @if(auth()->user()->role!='admin')
+                            @if(auth()->user()->id!=$game->user->id)
                             <a type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#status">Report Game <i class="far fa-flag"></i></a>
-
+                            @endif
+                            @endif
                             @endif
                         </div>
                     </div>

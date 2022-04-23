@@ -34,7 +34,7 @@ class ManufacturerRequest extends FormRequest
     public function createBrand()
     {
         $newImageName = null;
-        if ($this->game_image != null) {
+        if ($this->manufacturer_image != null) {
             $file = $this->file('manufacturer_image');
             $newImageName = time() . '_' . $file->getClientOriginalName();
             $dest = public_path('/uploads/manufacturer');
