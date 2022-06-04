@@ -42,7 +42,11 @@
                     <div class="mt-5">
                     @if(Auth::check())
                     @if(auth()->user()->role!='admin')
+                    @if(auth()->user()->id!=$game->user->id)
                         <a class="btn btn-primary mr-1" href="{{route('offer.Form', $game->id)}}">Send Offer <i class="far fa-money-bill-alt"></i></a>
+                    @else
+                    <h6 class="text-secondary">Added By You</h6>
+                    @endif    
                     @endif
                     @endif
                     </div>

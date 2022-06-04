@@ -9,6 +9,7 @@ use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class GameController extends Controller
 {
@@ -76,7 +77,7 @@ class GameController extends Controller
     {
         // dd($request->all());
 
-        // if ($this->checkGame($request->game_description)) {
+        if ($this->checkGame($request->game_description)) {
             if (!is_dir('uploads'))
                 mkdir('uploads');
 
@@ -86,9 +87,9 @@ class GameController extends Controller
             $this->game::create($request->createItem());
 
             return redirect()->route('user.game.index')->with('message', 'Game Successfully Added');
-        // } else {
-        //     return redirect()->route('user.game.create')->with('message', 'Enter Valid Game with Game Description');
-        // }
+        } else {
+            return redirect()->route('user.game.create')->with('message', 'Enter Valid Game with Game Description');
+        }
 
 
         //
@@ -189,13 +190,18 @@ class GameController extends Controller
 
     public function checkGame($description)
     {
+        $value1=False;
+        $value2=False;
         $description = explode(' ', $description);
         // dd($description);
         foreach ($description as $desc) {
             if (
                 (strcmp(strtolower($desc), 'games') == 0
-                    || strcmp(strtolower($desc), 'game') == 0)
-                && (strcmp(strtolower($desc), 'multiplayer') == 0
+                    || strcmp(strtolower($desc), 'game') == 0)){
+                        $value1=True;
+                    }
+
+                if (strcmp(strtolower($desc), 'multiplayer') == 0
                     || strcmp(strtolower($desc), 'player') == 0
                     || strcmp(strtolower($desc), 'online') == 0
                     || strcmp(strtolower($desc), 'free') == 0
@@ -212,11 +218,14 @@ class GameController extends Controller
                     || strcmp(strtolower($desc), 'shooting') == 0
                     || strcmp(strtolower($desc), 'pve') == 0
                     || strcmp(strtolower($desc), 'pvp') == 0
-                    || strcmp(strtolower($desc), 'players') == 0)
-            ) {
-                return true;
-            }
-        }
-        return false;
+                    || strcmp(strtolower($desc), 'players') == 0){
+                        $value2=True;
+                    }
+           
+        
+    }
+        $value = $value1 && $value2;
+        // dd($value);
+        return $value;
     }
 }
