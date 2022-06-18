@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::put('/delete-user-confirm', [UserController::class, 'deleteUser'])->name('deleteUser');
 
 
-        
+
 
         Route::group(['as' => 'game.', 'prefix' => 'game'], function () {
             Route::get('/index', [GameController::class, 'index'])->name('index');

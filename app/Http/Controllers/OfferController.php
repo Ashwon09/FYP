@@ -35,7 +35,7 @@ class OfferController extends Controller
             'phone'=>Auth::user()->phone_number,
         ];
         // dd($game->user->email);
-        Mail::to($game->user->email)->send(new CashOffer($data));
+        // Mail::to($game->user->email)->send(new CashOffer($data));
         // dd($request->all());
         Offer::create([
             'user_id'=> Auth::user()->id,

@@ -15,7 +15,7 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('game_name');
+
             $table->string('game_developer');
             $table->String('game_description', 1000);
             $table->integer('game_price');
@@ -36,7 +36,7 @@ class CreateGamesTable extends Migration
                 ->onDelete('set null');
 
             $table->String('genre_id');
-            
+
 
             $table->timestamps();
         });
